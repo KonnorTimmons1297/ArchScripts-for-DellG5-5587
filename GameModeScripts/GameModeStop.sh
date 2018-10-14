@@ -25,18 +25,20 @@ tryUnloadNvidiaModule()
 
 	if [[ $oLsmodNvidia = *nvidia* ]]
 	then
-		echo "Failed to unload nvidia module"
+		echo "->Failed to unload nvidia module"
 	else
-		echo "Nvidia Modules Unloaded correctly"
+		echo "->Nvidia Modules Unloaded correctly"
 	fi
 }
 
+echo "==Nvidia Modules=="
+
 if [[ $oLsmodNvidia = *nvidia* ]]
 then
-	echo "Unloading Nvidia Modules"
+	echo "->Unloading Nvidia Modules"
 	tryUnloadNvidiaModule
 else
-	echo "Nvidia modules not loaded"
+	echo "->Nvidia modules not loaded"
 fi
 
 ########################################
@@ -51,26 +53,30 @@ updateCurrentCPUGovernorMode()
 
 tryTurnOnPowersaveMode()
 {
-	sudo cpupower frequency-set -g powersave &
+	sudo cpupower frequency-set -g powersave > /dev/null
 
 	if [[ $currentCPUGovernorMode = *powersave* ]]
 	then
-		echo "Successfully enabled powersave mode for CPU"
+		echo "->Successfully enabled powersave mode for CPU"
 	else
-		echo "Unable to enable powersave mode for CPU"
+		echo "->Unable to enable powersave mode for CPU"
 	fi
 }
 
+echo "==CPU Governor=="
+
 if [[ $currentCPUGovernorMode = *performance* ]]
 then
-	echo "CPU currently in performance mode"
+	echo "->CPU currently in performance mode"
 	tryTurnOnPowersaveMode
 else
-	echo "CPU is operating in powersave!"
+	echo "->CPU is operating in powersave!"
 fi
 
 ###################################################
 ##   3@ Turn off performance mode for Hard Drive  ##
 ###################################################
-echo "Setting HD Powersaving mode"
+echo "==Hard Drive Powersave mode=="
+
+echo "->Setting HD Powersaving mode"
 sudo hdparm -B 10 /dev/sda > /dev/null
