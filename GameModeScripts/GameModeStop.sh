@@ -76,7 +76,14 @@ fi
 ###################################################
 ##   3@ Turn off performance mode for Hard Drive  ##
 ###################################################
+hdparmCommand=$(hdparm --version)
+
 echo "==Hard Drive Powersave mode=="
 
-echo "->Setting HD Powersaving mode"
-sudo hdparm -B 10 /dev/sda > /dev/null
+if [[ $hdparmCommand = *not\sfound* ]]
+then
+	echo "->hdparm not available on system"
+else
+	echo "->Setting HD Performance mode"
+	sudo hdparm -B 10 /dev/sda > /dev/null
+fi
