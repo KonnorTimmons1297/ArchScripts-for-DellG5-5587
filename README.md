@@ -25,7 +25,7 @@ In my case, I have an SSD and a traditional Hard Drive. I have Arch on my SSD an
     1. Using `hdparm`.
 
 ## nvidia-xrun ##
-The Dell G5 15 5587 using optimus graphics. My machine has an iGPU and dGPU. The iGPU is an intel iris 630, and the dGPU is an Nvidia GTX 1050 Ti.
+The Dell G5 15 5587 uses optimus graphics. My machine has an iGPU and dGPU. The iGPU is an intel iris 630, and the dGPU is an Nvidia GTX 1050 Ti.
 
 To utilize the dGPU I was unable to use Bumblebee and bbswitch in conjunction with optirun or primusrun. Instead I found that the [nvidia-xrun](https://github.com/Witko/nvidia-xrun) method works flawlessly.
 
